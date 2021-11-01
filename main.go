@@ -12,12 +12,13 @@ import (
 
 func main() {
 	var (
-		tDir, prefix, regX  string
-		isRename, noEnd, ok bool
+		tDir, prefix, regX, extension string
+		isRename, noEnd, ok           bool
 	)
 	flag.StringVar(&tDir, "dir", "", "define where the files to be renamed is located.")
 	flag.StringVar(&prefix, "prefix", "", "define the prefix of the renamed file.")
 	flag.StringVar(&regX, "re", "", "define custom regex pattern.")
+	flag.StringVar(&extension, "ext", "", "filter by extension.")
 	flag.BoolVar(&isRename, "r", false, "rename the files.")
 	flag.BoolVar(&noEnd, "no-end", false, "omit 'END' from last file's suffix.")
 	flag.Parse()
@@ -36,6 +37,14 @@ func main() {
 	for i, fl := range files {
 		if fl.IsDir() {
 			continue
+		}
+		// make sure filter and the file's extension no empty
+		if extension != "" && path.Ext(fl.Name()) != "" {
+			// if not match with the filtered extention then
+			// just skip it
+			if path.Ext(fl.Name()) != extension {
+				continue
+			}
 		}
 
 		pattern := evalRegex(regX)
