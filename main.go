@@ -85,7 +85,7 @@ func main() {
 // with the input as pattern otherwise use default pattern.
 func evalRegex(v string) *regexp.Regexp {
 	if v == "" {
-		return regexp.MustCompile(`\s\d\d?\d?`)
+		return regexp.MustCompile(`\d\d\d?\d?`)
 	}
 	return regexp.MustCompile(v)
 }
