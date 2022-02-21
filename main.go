@@ -10,18 +10,22 @@ import (
 	"strings"
 )
 
-func main() {
-	var (
-		tDir, prefix, regX, extension string
-		isRename, noEnd, ok           bool
-	)
-	flag.StringVar(&tDir, "dir", "", "define where the files to be renamed is located.")
-	flag.StringVar(&prefix, "prefix", "", "define the prefix of the renamed file.")
+var (
+	tDir, prefix, regX, extension string
+	isRename, noEnd, ok           bool
+)
+
+func init() {
+	flag.StringVar(&tDir, "d", "", "define where the files to be renamed is located.")
+	flag.StringVar(&prefix, "p", "", "define the prefix of the renamed file.")
 	flag.StringVar(&regX, "re", "", "define custom regex pattern.")
 	flag.StringVar(&extension, "ext", "", "filter by extension.")
 	flag.BoolVar(&isRename, "r", false, "rename the files.")
 	flag.BoolVar(&noEnd, "no-end", false, "omit 'END' from last file's suffix.")
 	flag.Parse()
+}
+
+func main() {
 	if tDir == "" {
 		log.Fatalln("target dir is empty")
 	}
