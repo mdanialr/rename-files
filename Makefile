@@ -1,2 +1,2 @@
 bd:
-	go build -o build/go-rename main.go
+	go build -o bin/go-rename main.go
