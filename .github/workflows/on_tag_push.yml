@@ -1,0 +1,11 @@
+name: Continuous Deployment
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  bin_release:
+    name: Build and Release Binary
+    uses: ./.github/workflows/release.yml
