@@ -23,3 +23,6 @@ So basically you would be presented with the preview which shows `old` and `new`
 `-re` *__string__*: override the default regex pattern.
 
 `-r` *__boolean__*: include this if you are ready to rename the target files.
+
+# License
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE "LICENSE") file for details.
